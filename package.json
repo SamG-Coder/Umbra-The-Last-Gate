@@ -1,0 +1,17 @@
+{
+  "name": "umbra-the-last-gate",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "An original shadow-hunter action RPG inspired by Solo Levelling. Three.js, entirely client-side.",
+  "scripts": {
+    "start": "node tools/serve.mjs",
+    "vendor": "node tools/vendor.mjs",
+    "test": "node --test tests/rules.test.mjs && node --experimental-loader ./tests/loader.mjs --test tests/game.test.mjs",
+    "check": "node tools/check.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT"
+}

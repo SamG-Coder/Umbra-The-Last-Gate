@@ -1,0 +1,151 @@
+TAP version 13
+# (node:2581) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+# --import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("./tests/loader.mjs", pathToFileURL("./"));'
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: a fresh hunt spawns 17 enemies over three halls
+ok 1 - a fresh hunt spawns 17 enemies over three halls
+  ---
+  duration_ms: 2.629301
+  type: 'test'
+  ...
+# Subtest: WASD input moves at a bounded speed
+ok 2 - WASD input moves at a bounded speed
+  ---
+  duration_ms: 0.911415
+  type: 'test'
+  ...
+# Subtest: dash consumes stamina, gives invulnerability and enforces cooldown
+ok 3 - dash consumes stamina, gives invulnerability and enforces cooldown
+  ---
+  duration_ms: 0.56244
+  type: 'test'
+  ...
+# Subtest: no-essence cast is rejected without entering cooldown
+ok 4 - no-essence cast is rejected without entering cooldown
+  ---
+  duration_ms: 0.292001
+  type: 'test'
+  ...
+# Subtest: three-strike melee deals real damage and advances combo
+ok 5 - three-strike melee deals real damage and advances combo
+  ---
+  duration_ms: 0.618393
+  type: 'test'
+  ...
+# Subtest: melee does not damage a distant enemy
+ok 6 - melee does not damage a distant enemy
+  ---
+  duration_ms: 0.29147
+  type: 'test'
+  ...
+# Subtest: piercing rift hits each enemy once instead of every substep
+ok 7 - piercing rift hits each enemy once instead of every substep
+  ---
+  duration_ms: 0.802925
+  type: 'test'
+  ...
+# Subtest: kills award XP and crystals exactly once
+ok 8 - kills award XP and crystals exactly once
+  ---
+  duration_ms: 0.788304
+  type: 'test'
+  ...
+# Subtest: extraction requires a real nearby unclaimed corpse
+ok 9 - extraction requires a real nearby unclaimed corpse
+  ---
+  duration_ms: 1.521826
+  type: 'test'
+  ...
+# Subtest: shadow capacity prevents consuming extra corpses
+ok 10 - shadow capacity prevents consuming extra corpses
+  ---
+  duration_ms: 0.532917
+  type: 'test'
+  ...
+# Subtest: summoned shadows attack, expire, and are not made without a roster
+ok 11 - summoned shadows attack, expire, and are not made without a roster
+  ---
+  duration_ms: 0.689337
+  type: 'test'
+  ...
+# Subtest: potions heal exactly up to the health cap
+ok 12 - potions heal exactly up to the health cap
+  ---
+  duration_ms: 0.246514
+  type: 'test'
+  ...
+# Subtest: stat spending and equipment changes persist and affect stats
+ok 13 - stat spending and equipment changes persist and affect stats
+  ---
+  duration_ms: 0.315706
+  type: 'test'
+  ...
+# Subtest: a completed hall offers one boon, opens a gate, and remains cleared on reload
+ok 14 - a completed hall offers one boon, opens a gate, and remains cleared on reload
+  ---
+  duration_ms: 1.105982
+  type: 'test'
+  ...
+# Subtest: crossing into a new hall records a checkpoint and restores supplies
+ok 15 - crossing into a new hall records a checkpoint and restores supplies
+  ---
+  duration_ms: 0.220876
+  type: 'test'
+  ...
+# Subtest: enemy attacks wind up before damaging a hunter
+ok 16 - enemy attacks wind up before damaging a hunter
+  ---
+  duration_ms: 1.037281
+  type: 'test'
+  ...
+# Subtest: moving outside a telegraphed strike avoids it
+ok 17 - moving outside a telegraphed strike avoids it
+  ---
+  duration_ms: 0.24359
+  type: 'test'
+  ...
+# Subtest: boss phase changes and attack patterns are active
+ok 18 - boss phase changes and attack patterns are active
+  ---
+  duration_ms: 0.316587
+  type: 'test'
+  ...
+# Subtest: death saves progression, applies penalty once, and retry restores checkpoint
+ok 19 - death saves progression, applies penalty once, and retry restores checkpoint
+  ---
+  duration_ms: 0.325961
+  type: 'test'
+  ...
+# Subtest: the monarch death leads to victory and Ascension retains the hunter
+ok 20 - the monarch death leads to victory and Ascension retains the hunter
+  ---
+  duration_ms: 0.556992
+  type: 'test'
+  ...
+# Subtest: paused hunt freezes movement, projectiles, and resource regeneration
+ok 21 - paused hunt freezes movement, projectiles, and resource regeneration
+  ---
+  duration_ms: 0.646575
+  type: 'test'
+  ...
+# Subtest: coffers and lore cannot award repeatedly
+ok 22 - coffers and lore cannot award repeatedly
+  ---
+  duration_ms: 0.333222
+  type: 'test'
+  ...
+# Subtest: frame simulation runs through repeated encounters without non-finite state
+ok 23 - frame simulation runs through repeated encounters without non-finite state
+  ---
+  duration_ms: 11.589445
+  type: 'test'
+  ...
+1..23
+# tests 23
+# suites 0
+# pass 23
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 128.400234

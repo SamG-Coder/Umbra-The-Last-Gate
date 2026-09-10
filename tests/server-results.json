@@ -1,0 +1,38 @@
+{
+  "/": {
+    "status": 200,
+    "mime": "text/html; charset=utf-8",
+    "bytes": 5484
+  },
+  "/src/main.js": {
+    "status": 200,
+    "mime": "text/javascript; charset=utf-8",
+    "bytes": 1131
+  },
+  "/src/game.js": {
+    "status": 200,
+    "mime": "text/javascript; charset=utf-8",
+    "bytes": 30585
+  },
+  "/style.css": {
+    "status": 200,
+    "mime": "text/css; charset=utf-8",
+    "bytes": 23433
+  },
+  "/assets/emblem.svg": {
+    "status": 200,
+    "mime": "image/svg+xml",
+    "bytes": 288
+  },
+  "/tests/game.test.mjs": {
+    "status": 200,
+    "mime": "text/javascript; charset=utf-8",
+    "bytes": 8648
+  },
+  "/missing.js": {
+    "status": 404
+  },
+  "/%2e%2e%2fetc/passwd": {
+    "status": 403
+  }
+}

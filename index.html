@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#090e19"><meta name="description" content="Become what the dungeon fears. An original Three.js shadow-hunter action RPG.">
+<title>UMBRA — The Last Gate</title>
+<link rel="icon" type="image/svg+xml" href="assets/emblem.svg"><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="game" aria-label="Umbra 3D game"></canvas>
+<div id="edge-shade"></div><div id="flash"></div>
+<div id="loading"><div class="loading-mark">♜</div><div class="eyebrow">ESTABLISHING A CONNECTION</div><h2>The gate remembers.</h2><div class="loader-line"><i></i></div><p id="loading-status">Preparing the dungeon…</p><div id="load-error" hidden></div></div>
+<section id="title-screen" class="screen hidden" aria-label="Main menu">
+ <div class="title-top"><span class="tiny-brand">U <i>/</i> A SHADOW-HUNTER RPG</span><span class="build-label">ORIGINAL WORLD · THREE.JS</span></div>
+ <div class="title-copy"><div class="eyebrow"><span class="status-dot"></span> THE SYSTEM HAS CHOSEN YOU</div><h1>UMBRA</h1><div class="title-sub"><span></span>THE LAST GATE<span></span></div><p class="tagline">Enter alone.<br>Leave with an army.</p><p class="intro">A forgotten cathedral. A king who refused to die.<br>And a power that should never have been yours.</p>
+ <div class="menu-actions"><button id="continue-btn" class="primary hidden">CONTINUE HUNT <span>↗</span></button><button id="start-btn" class="primary">ENTER THE GATE <span>↗</span></button><div class="menu-secondary"><button id="title-settings">SETTINGS</button><button id="title-help">HOW TO PLAY</button></div></div>
+ </div>
+ <div class="gate-info"><span class="eyebrow">GATE 007 / UNREGISTERED</span><div class="gate-info-line"></div><p>THREAT ASSESSMENT</p><strong>Unknown.</strong><div class="small">No surviving hunters.<br>No extraction team.<br>No second awakening.</div><div class="gate-status">◇ &nbsp; YOUR SHADOW IS STILL YOURS.</div></div>
+ <div class="title-bottom"><span>HEADPHONES RECOMMENDED</span><span>WASD to move &nbsp; / &nbsp; Mouse to fight</span><span>v1.0 · THE FIRST DESCENT</span></div>
+</section>
+<div id="hud" class="hidden">
+ <div id="player-panel"><div class="level-badge"><small>LV</small><strong id="level">1</strong></div><div class="vitals"><div class="hunter-line"><b>THE UNCHOSEN</b><span id="rank">E-RANK</span></div><div class="bar health"><i id="hp-bar"></i><span id="hp-label">150 / 150</span></div><div class="bar essence"><i id="mana-bar"></i><span id="mana-label">100 / 100</span></div><div class="bar stamina"><i id="stamina-bar"></i></div><div class="xp-track"><i id="xp-bar"></i></div></div></div>
+ <div id="location"><div class="eyebrow" id="location-rank">E-RANK GATE / 01</div><h3 id="location-name">THE FORSAKEN NAVE</h3><span id="cycle-label"></span></div>
+ <div id="map-panel"><canvas id="minimap" width="180" height="180"></canvas><div class="map-caption"><span id="coins">0</span><span>CRYSTALS</span></div></div>
+ <button id="menu-icon" title="Pause / Settings (Esc)" aria-label="Pause game">Ⅱ</button>
+ <div id="quest"><div class="eyebrow">ACTIVE QUEST</div><h4 id="quest-title">A second awakening</h4><p id="quest-text">Defeat the sentinels of the nave.</p><div id="quest-progress"></div></div>
+ <div id="boss-ui" class="hidden"><div class="boss-title"><span id="boss-name">VAEL, THE HOLLOW KING</span><span id="boss-phase">THE FIRST OATH</span></div><div class="boss-bar"><i id="boss-hp"></i></div></div>
+ <div id="combo-ui" class="hidden"><strong id="combo-count">3</strong><span>HIT CHAIN</span></div>
+ <div id="toasts" aria-live="polite"></div><div id="floating"></div>
+ <div id="center-banner" class="hidden"><div class="eyebrow" id="banner-small"></div><h2 id="banner-title"></h2><p id="banner-text"></p></div>
+ <div id="interaction" class="hidden"><kbd>F</kbd><span id="interaction-label"></span></div>
+ <div id="shadow-panel"><div class="eyebrow">SHADOW LEGION</div><div id="shadow-slots"></div><span id="shadow-status">Extract the fallen with E</span></div>
+ <div id="hotbar"></div>
+ <div id="bottom-hints"><span><kbd>TAB</kbd> Hunter record</span><span><kbd>RMB</kbd> Orbit camera</span><span><kbd>H</kbd> Controls</span></div><div id="fps" class="hidden"></div>
+ <div id="touch-controls"><div id="joystick"><div id="stick"></div></div><div class="touch-actions"><button data-action="rift" title="Rift Cleave">Q</button><button data-action="extract" title="Extract shadow">E</button><button data-action="army" title="Arise">R</button><button data-action="potion" title="Recovery potion">✚</button><button data-action="dash" class="touch-dash">DODGE</button><button data-action="attack" class="touch-attack">⚔</button><button data-action="interact" class="touch-interact">F</button></div><button id="touch-inventory">HUNTER</button></div>
+</div>
+<div id="modal" class="hidden" role="dialog" aria-modal="true" aria-label="Game menu"><div class="modal-panel"><button id="modal-close" class="close" aria-label="Close menu">×</button><div id="modal-content"></div></div></div>
+<div id="fatal" class="hidden"><h2>The gate could not stabilise.</h2><p id="fatal-message"></p><button onclick="location.reload()">RELOAD</button></div>
+<noscript>JavaScript is required to run Umbra.</noscript>
+<script src="src/bootstrap.js"></script>
+</body></html>

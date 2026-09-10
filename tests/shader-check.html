@@ -1,0 +1,15 @@
+<!doctype html><html><meta charset="utf-8"><title>UMBRA shader checks</title><body><canvas id="c"></canvas><pre id="result">Running…</pre><script>
+(async()=>{
+const shaders=await (await fetch('shaders.json')).json();const gl=document.getElementById('c').getContext('webgl2');
+if(!gl){window.result={ok:false,error:'WebGL2 unavailable'};return;}
+function compile(code,type){
+let prefix='#version 300 es\nprecision highp float;\n';
+if(type===gl.VERTEX_SHADER){prefix+='in vec3 position;in vec2 uv;uniform mat4 projectionMatrix;uniform mat4 modelViewMatrix;\n';code=code.replaceAll('varying ','out ');}
+else{prefix+='out vec4 fragColor;\n';code=code.replaceAll('varying ','in ').replaceAll('gl_FragColor','fragColor').replaceAll('texture2D','texture');}
+const shader=gl.createShader(type);gl.shaderSource(shader,prefix+code);gl.compileShader(shader);return {shader,ok:gl.getShaderParameter(shader,gl.COMPILE_STATUS),log:gl.getShaderInfoLog(shader)};
+}
+const tests=[];for(const name of ['extractFS','blurFS','finalFS','portalFrag']){
+const v=compile(shaders[name==='portalFrag'?'vert':'vs'],gl.VERTEX_SHADER),f=compile(shaders[name],gl.FRAGMENT_SHADER),p=gl.createProgram();gl.attachShader(p,v.shader);gl.attachShader(p,f.shader);gl.linkProgram(p);tests.push({name,vertex:v.ok,fragment:f.ok,linked:gl.getProgramParameter(p,gl.LINK_STATUS),log:[v.log,f.log,gl.getProgramInfoLog(p)].filter(Boolean)});gl.deleteProgram(p);gl.deleteShader(v.shader);gl.deleteShader(f.shader);
+}window.result={ok:tests.every(t=>t.vertex&&t.fragment&&t.linked),renderer:gl.getParameter(gl.RENDERER),tests};document.getElementById('result').textContent=JSON.stringify(window.result,null,2);
+})().catch(e=>{window.result={ok:false,error:e.message};});
+</script></body></html>

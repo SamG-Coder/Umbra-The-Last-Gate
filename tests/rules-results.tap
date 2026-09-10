@@ -1,0 +1,136 @@
+TAP version 13
+# Subtest: new hunter has valid stats and no shared mutable arrays
+ok 1 - new hunter has valid stats and no shared mutable arrays
+  ---
+  duration_ms: 1.032774
+  type: 'test'
+  ...
+# Subtest: XP carries through multiple levels and awards two points per level
+ok 2 - XP carries through multiple levels and awards two points per level
+  ---
+  duration_ms: 0.231822
+  type: 'test'
+  ...
+# Subtest: negative XP awards do not remove progress
+ok 3 - negative XP awards do not remove progress
+  ---
+  duration_ms: 0.133718
+  type: 'test'
+  ...
+# Subtest: level cap terminates and does not loop indefinitely
+ok 4 - level cap terminates and does not loop indefinitely
+  ---
+  duration_ms: 0.10844
+  type: 'test'
+  ...
+# Subtest: boons and attributes alter their intended stats
+ok 5 - boons and attributes alter their intended stats
+  ---
+  duration_ms: 0.190972
+  type: 'test'
+  ...
+# Subtest: extreme builds retain bounded critical chance and cooldowns
+ok 6 - extreme builds retain bounded critical chance and cooldowns
+  ---
+  duration_ms: 0.151163
+  type: 'test'
+  ...
+# Subtest: seeded loot is reproducible and item ranges valid
+ok 7 - seeded loot is reproducible and item ranges valid
+  ---
+  duration_ms: 2.078658
+  type: 'test'
+  ...
+# Subtest: guaranteed final-hall loot is relic rarity
+ok 8 - guaranteed final-hall loot is relic rarity
+  ---
+  duration_ms: 0.108551
+  type: 'test'
+  ...
+# Subtest: blade arcs face positive Z at angle zero
+ok 9 - blade arcs face positive Z at angle zero
+  ---
+  duration_ms: 0.304078
+  type: 'test'
+  ...
+# Subtest: angles take the shortest path across pi
+ok 10 - angles take the shortest path across pi
+  ---
+  duration_ms: 0.394152
+  type: 'test'
+  ...
+# Subtest: armour reduces damage without negative or zero damage
+ok 11 - armour reduces damage without negative or zero damage
+  ---
+  duration_ms: 0.158814
+  type: 'test'
+  ...
+# Subtest: sealed gates stop a long dash without tunnelling
+ok 12 - sealed gates stop a long dash without tunnelling
+  ---
+  duration_ms: 0.298671
+  type: 'test'
+  ...
+# Subtest: open bridges remain traversable between halls
+ok 13 - open bridges remain traversable between halls
+  ---
+  duration_ms: 0.735055
+  type: 'test'
+  ...
+# Subtest: pillar collisions stop a dash
+ok 14 - pillar collisions stop a dash
+  ---
+  duration_ms: 0.123652
+  type: 'test'
+  ...
+# Subtest: boundary collision permits sliding along walls
+ok 15 - boundary collision permits sliding along walls
+  ---
+  duration_ms: 0.090364
+  type: 'test'
+  ...
+# Subtest: all checkpoint centres fit the walkable world
+ok 16 - all checkpoint centres fit the walkable world
+  ---
+  duration_ms: 0.088561
+  type: 'test'
+  ...
+# Subtest: save sanitiser rejects unsupported version and nonobjects
+ok 17 - save sanitiser rejects unsupported version and nonobjects
+  ---
+  duration_ms: 0.18354
+  type: 'test'
+  ...
+# Subtest: save sanitiser strips unknown fields and constrains hostile input
+ok 18 - save sanitiser strips unknown fields and constrains hostile input
+  ---
+  duration_ms: 0.301875
+  type: 'test'
+  ...
+# Subtest: save round trip retains all earned progress including cleared gates
+ok 19 - save round trip retains all earned progress including cleared gates
+  ---
+  duration_ms: 0.298531
+  type: 'test'
+  ...
+# Subtest: save storage handles blocked storage without throwing
+ok 20 - save storage handles blocked storage without throwing
+  ---
+  duration_ms: 0.221738
+  type: 'test'
+  ...
+# Subtest: import checks format, size, and corrupt JSON
+ok 21 - import checks format, size, and corrupt JSON
+  ---
+  duration_ms: 0.619564
+  type: 'test'
+  ...
+1..21
+# tests 21
+# suites 0
+# pass 21
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 69.214983

@@ -1,0 +1,27 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {freshProfile,stats,gainXP,nextLevelXP,seeded,rollLoot,moveCircle,inArc,applyDamage,sanitiseProfile,BOONS,angleDelta} from '../src/rules.js';
+import {WALKABLE,ZONES} from '../src/data.js';
+import {SaveStore} from '../src/save.js';
+
+test('new hunter has valid stats and no shared mutable arrays',()=>{const a=freshProfile(),b=freshProfile();a.shadows.push('knight');assert.equal(b.shadows.length,0);assert.equal(stats(b).maxHP,150);assert.equal(stats(b).damage,22);});
+test('XP carries through multiple levels and awards two points per level',()=>{const p=freshProfile();const amount=nextLevelXP(1)+nextLevelXP(2)+13;assert.equal(gainXP(p,amount),2);assert.equal(p.level,3);assert.equal(p.xp,13);assert.equal(p.points,4);});
+test('negative XP awards do not remove progress',()=>{const p=freshProfile();p.xp=20;gainXP(p,-20);assert.equal(p.xp,20);});
+test('level cap terminates and does not loop indefinitely',()=>{const p=freshProfile();p.level=98;gainXP(p,1e8);assert.equal(p.level,99);assert.equal(p.points,2);});
+test('boons and attributes alter their intended stats',()=>{const p=freshProfile();p.attributes.spirit=4;p.attributes.vitality=2;p.boons=['fury','dominion','vitality','reservoir','celerity','precision','hunger'];const s=stats(p);assert.equal(s.maxHP,231);assert.equal(s.shadowLimit,5);assert.equal(s.damage,26.4);assert.equal(s.maxMana,178);assert.ok(s.cooldown<1);assert.equal(s.lifesteal,.035);});
+test('extreme builds retain bounded critical chance and cooldowns',()=>{const p=freshProfile();p.attributes.agility=200;p.attributes.spirit=200;p.boons=Array(10).fill('dominion');assert.equal(stats(p).shadowLimit,6);assert.equal(stats(p).crit,.65);assert.equal(stats(p).cooldown,.45);});
+test('seeded loot is reproducible and item ranges valid',()=>{const a=seeded(37),b=seeded(37);for(let i=0;i<200;i++){const x=rollLoot(a,3),y=rollLoot(b,3);assert.deepEqual(x,y);assert.ok(['weapon','armor'].includes(x.slot));assert.ok(x.power>=0);assert.ok(x.rarity>=0&&x.rarity<=4);}});
+test('guaranteed final-hall loot is relic rarity',()=>{assert.equal(rollLoot(seeded(1),2,true).rarity,4);});
+test('blade arcs face positive Z at angle zero',()=>{assert.equal(inArc({x:0,z:0},0,{x:0,z:2},3),true);assert.equal(inArc({x:0,z:0},0,{x:0,z:-2},3),false);assert.equal(inArc({x:0,z:0},Math.PI,{x:0,z:-2},3),true);});
+test('angles take the shortest path across pi',()=>{assert.ok(Math.abs(angleDelta(Math.PI-.01,-Math.PI+.01)-.02)<1e-8);});
+test('armour reduces damage without negative or zero damage',()=>{assert.equal(applyDamage(100,0),100);assert.ok(applyDamage(100,30)<100);assert.equal(applyDamage(1,999),1);});
+test('sealed gates stop a long dash without tunnelling',()=>{const p={x:0,z:-14};moveCircle(p,{x:0,z:-15},.48,WALKABLE,[],[{z:-18,x0:-4.8,x1:4.8,open:false}]);assert.ok(p.z>-17.3);});
+test('open bridges remain traversable between halls',()=>{const p={x:0,z:12};moveCircle(p,{x:0,z:-111},.48,WALKABLE,[],[]);assert.ok(Math.abs(p.z+99)<.001);});
+test('pillar collisions stop a dash',()=>{const p={x:0,z:4};moveCircle(p,{x:0,z:-10},.48,[{x0:-10,x1:10,z0:-10,z1:10}],[{x:0,z:0,r:.8}]);assert.ok(p.z>=1.27);});
+test('boundary collision permits sliding along walls',()=>{const p={x:13,z:10};moveCircle(p,{x:5,z:-4},.48,WALKABLE,[]);assert.ok(p.x<=13.52);assert.ok(p.z<6.01);});
+test('all checkpoint centres fit the walkable world',()=>{for(const zone of ZONES){const p={...zone.checkpoint};const old={...p};moveCircle(p,{x:.01,z:0},.48,WALKABLE,[]);assert.ok(p.x>old.x);}});
+test('save sanitiser rejects unsupported version and nonobjects',()=>{assert.equal(sanitiseProfile(null),null);assert.equal(sanitiseProfile({version:2}),null);});
+test('save sanitiser strips unknown fields and constrains hostile input',()=>{const p=sanitiseProfile({version:1,level:Infinity,gold:-7,checkpoint:55,attributes:{strength:9999},shadows:['alien','knight'],cleared:[0,0,2,7,-1],opened:[0,'bad'],equipment:{weapon:{slot:'weapon',power:Infinity,name:'bad',id:'1'}},unknown:'discard'});assert.equal(p.level,1);assert.equal(p.gold,0);assert.equal(p.checkpoint,2);assert.equal(p.attributes.strength,200);assert.deepEqual(p.shadows,['knight']);assert.deepEqual(p.cleared,[0,2]);assert.equal(p.equipment.weapon.power,0);assert.equal(p.unknown,undefined);});
+test('save round trip retains all earned progress including cleared gates',()=>{const p=freshProfile();p.cleared=[0,1];p.checkpoint=2;p.inventory.push(rollLoot(seeded(4)));p.boons=BOONS.slice(0,2).map(b=>b.id);p.shadows=['brute','mage'];assert.deepEqual(sanitiseProfile(JSON.parse(JSON.stringify(p))),p);});
+test('save storage handles blocked storage without throwing',()=>{globalThis.localStorage={getItem(){throw new Error('blocked');},setItem(){throw new Error('blocked');}};const store=new SaveStore();assert.equal(store.available,false);assert.equal(store.save(freshProfile()),false);assert.equal(store.load(),null);});
+test('import checks format, size, and corrupt JSON',async()=>{globalThis.localStorage={getItem(){return null;},setItem(){}};const store=new SaveStore();await assert.rejects(store.import({size:300000,text:async()=>''}));await assert.rejects(store.import({size:3,text:async()=>'bad'}));await assert.rejects(store.import({size:20,text:async()=>JSON.stringify({profile:freshProfile()})}));const p=await store.import({size:100,text:async()=>JSON.stringify({game:'umbra-the-last-gate',profile:freshProfile()})});assert.equal(p.level,1);});

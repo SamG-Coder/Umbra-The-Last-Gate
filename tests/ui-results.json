@@ -1,0 +1,19 @@
+{
+  "scope": "Actual HTML/CSS, UI and Input with a stubbed game interface; no Three.js rendering",
+  "checks": [
+    "Main menu starts the hunt and reveals HUD",
+    "W key maps to camera-relative forward movement",
+    "Q key dispatches Rift Cleave",
+    "Tab opens the real hunter record",
+    "Escape dismisses the hunter record",
+    "Pause/settings updates the graphics selection",
+    "Reward modal cannot be skipped and applies its selected blessing",
+    "Controls dialog opens and closes",
+    "Right-button orbit changes camera yaw",
+    "Touch skill buttons dispatch their actions",
+    "Joystick drag moves and release resets its input",
+    "Landscape-phone record panel fits viewport width"
+  ],
+  "javascriptErrors": [],
+  "ok": true
+}

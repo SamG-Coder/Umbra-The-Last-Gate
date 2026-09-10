@@ -1,0 +1,148 @@
+{
+  "kind": "Headless deterministic campaign; no graphics rendered",
+  "seed": 417,
+  "difficulty": "normal",
+  "simulationSeconds": 54.06666666666667,
+  "outcome": "won",
+  "level": 5,
+  "kills": 17,
+  "deaths": 0,
+  "shadows": 4,
+  "hp": 252,
+  "checkpoint": 2,
+  "log": [
+    {
+      "at": 3.1666666666666665,
+      "event": "kill",
+      "kills": 1,
+      "hp": 150,
+      "level": 1
+    },
+    {
+      "at": 3.6666666666666665,
+      "event": "kill",
+      "kills": 2,
+      "hp": 150,
+      "level": 1
+    },
+    {
+      "at": 5.166666666666667,
+      "event": "kill",
+      "kills": 3,
+      "hp": 150,
+      "level": 1
+    },
+    {
+      "at": 8.533333333333333,
+      "event": "kill",
+      "kills": 4,
+      "hp": 162,
+      "level": 2
+    },
+    {
+      "at": 9.383333333333333,
+      "event": "kill",
+      "kills": 5,
+      "hp": 162,
+      "level": 2
+    },
+    {
+      "at": 10.7,
+      "event": "kill",
+      "kills": 6,
+      "hp": 162,
+      "level": 2
+    },
+    {
+      "at": 14.683333333333334,
+      "event": "checkpoint",
+      "zone": 1,
+      "hp": 162,
+      "level": 2
+    },
+    {
+      "at": 16.1,
+      "event": "kill",
+      "kills": 7,
+      "hp": 162,
+      "level": 2
+    },
+    {
+      "at": 16.416666666666668,
+      "event": "kill",
+      "kills": 8,
+      "hp": 174,
+      "level": 3
+    },
+    {
+      "at": 16.866666666666667,
+      "event": "kill",
+      "kills": 9,
+      "hp": 192,
+      "level": 3
+    },
+    {
+      "at": 20.016666666666666,
+      "event": "kill",
+      "kills": 10,
+      "hp": 178.34,
+      "level": 3
+    },
+    {
+      "at": 20.566666666666666,
+      "event": "kill",
+      "kills": 11,
+      "hp": 180.895,
+      "level": 3
+    },
+    {
+      "at": 23.866666666666667,
+      "event": "kill",
+      "kills": 12,
+      "hp": 204,
+      "level": 4
+    },
+    {
+      "at": 25.783333333333335,
+      "event": "kill",
+      "kills": 13,
+      "hp": 222,
+      "level": 4
+    },
+    {
+      "at": 29.75,
+      "event": "checkpoint",
+      "zone": 2,
+      "hp": 222,
+      "level": 4
+    },
+    {
+      "at": 30.95,
+      "event": "kill",
+      "kills": 14,
+      "hp": 222,
+      "level": 4
+    },
+    {
+      "at": 32.43333333333333,
+      "event": "kill",
+      "kills": 15,
+      "hp": 222,
+      "level": 4
+    },
+    {
+      "at": 35.13333333333333,
+      "event": "kill",
+      "kills": 16,
+      "hp": 212.08,
+      "level": 4
+    },
+    {
+      "at": 51.03333333333333,
+      "event": "kill",
+      "kills": 17,
+      "hp": 234,
+      "level": 5
+    }
+  ]
+}
