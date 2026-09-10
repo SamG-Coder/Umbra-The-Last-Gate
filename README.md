@@ -4,7 +4,7 @@
 
 [**Play in your browser**](https://samg-coder.github.io/Umbra-The-Last-Gate/)
 
-**One shot in the browser using Pro 6.**
+**One shot in the browser using 6 Pro.**
 
 ![UMBRA main menu overlooking the cathedral and its glowing blue gate](docs/images/umbra-preview.jpg)
 
